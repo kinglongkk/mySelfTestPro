@@ -82,12 +82,9 @@ cc.Class({
             // cc.audioEngine.playEffect(this.enemyDownClip, false);
         }
     },
-    setIsMove(isMove){
-        this._isMove = isMove;
-    },
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
-        // if (this._isMove)
+        if (this.enemyGroup.eState != D.commonInfo.gameState.start) return;
             this.node.y += dt*this.ySpeed;
         //敌机移出屏幕后回收
         if (this.node.y < -this.node.parent.height/2) this.enemyGroup.enemyDied(this.node, 0);
