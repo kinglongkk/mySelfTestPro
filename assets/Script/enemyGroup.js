@@ -18,10 +18,6 @@ cc.Class({
             type: enemyG,
             tooltip: "敌机组"
         },
-        /*main: {
-            default: null,
-            type: require("main")
-        }*/
     },
 
     // use this for initialization
@@ -64,12 +60,22 @@ cc.Class({
         var randy = this.node.parent.height/2 + newEnemy.height/2;
         return cc.v2(randX, randy);
     },
+    //重新开始
+    resumeAction(){
+        this.enabled = true;
+        this.eState = D.commonInfo.gameState.start;
+    },
+    //暂停
+    pauseAction(){
+        this.enabled = false;
+        this.eState = D.commonInfo.gameState.pause;
+    },
     enemyDied(nodeInfo, score){
         //回收节点
         D.common.backObjPool(this, nodeInfo);
         //增加分数
-        // if (parseInt(score) > 0) this.main.gainScore(score);
-    }
+        if (parseInt(score) > 0) D.main.gainScore(score);
+    },
 
 
 

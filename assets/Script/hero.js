@@ -8,22 +8,17 @@ cc.Class({
             tooltip: "爆炸动画"
         },
         gameOverClip: cc.AudioClip,
-        /*main: {
-            default: null,
-            type: require("main"),
-            displayName: ""
-        },*/
         bulletGroup: {
             default: null,
             type: require("bulletGroup"),
-            displayName: ""
+            tooltip: "子弹"
         }
     },
 
     // use this for initialization
     onLoad: function () {
-        /*this.eState = D.commonInfo.gameState.none;
-        cc.director.getCollisionManager().enabled = true;*/
+        this.eState = D.commonInfo.gameState.none;
+        cc.director.getCollisionManager().enabled = true;
         this.onDrag();
     },
     //添加拖动监听
@@ -55,11 +50,27 @@ cc.Class({
         if (other.node.group == "ufo") {
             if (other.node.name == "ufoBullet") {
                 this.bulletGroup.changeBullet(other.node.name);
+            } else if (other.node.name == "ufoBomb") {
+                D.main.getUfoBomb();
             }
-        }
+        } else if (other.node.group == "enemy") {
+            //播放动画
+            this.offDrag();
+            var po = this.node.getPosition();
+            var blowup = cc.instantiate(this.blowupani);
+            this.node.parent.addChild(blowup);
+            blowup.setPosition(po);
+            var animation = blowup.getComponent(cc.Animation);
+            animation.on("finished", this.onFinished, blowup);
+            // //播放音效
+            // cc.audioEngine.playEffect(this.gameOverClip, false);
+        } else return false;
     },
     onFinished(){
+        //清除hero节点
         this.destroy();
+        //更新分数
+        D.main.gameOver();
     }
 
 

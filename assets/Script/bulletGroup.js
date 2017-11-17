@@ -73,12 +73,14 @@ cc.Class({
         this.bICallback = function () {this._getNewBullet(this.bulletInfinite);}.bind(this);
         this.schedule(this.bICallback, this.bulletInfinite.freqTime);
     },
+    //暂停
     pauseAction(){
         this.enabled = false;
         this.eState = D.commonInfo.gameState.pause;
     },
+    //重新开始
     resumeAction(){
-        this.enable = true;
+        this.enabled = true;
         this.eState = D.commonInfo.gameState.start;
     },
     //换子弹

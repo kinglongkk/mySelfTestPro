@@ -1,7 +1,39 @@
 {
   "collision-matrix": [
     [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    [
+      false,
+      true,
+      false,
+      true,
+      false
+    ],
+    [
+      false,
+      false,
+      true,
+      false,
       true
+    ],
+    [
+      false,
+      false,
+      false,
+      true,
+      false
     ]
   ],
   "design-resolution-height": 640,
@@ -10,7 +42,11 @@
   "fit-height": true,
   "fit-width": true,
   "group-list": [
-    "default"
+    "default",
+    "bullet",
+    "enemy",
+    "hero",
+    "ufo"
   ],
   "simulator-orientation": false,
   "simulator-resolution": {
