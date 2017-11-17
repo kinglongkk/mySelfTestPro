@@ -4,17 +4,18 @@ cc.Class({
     properties: {
 
 
-
+        enemyGroup: {
+            default: null,
+            type: require("enemyGroup")
+        },
         hero: {
             default: null,
             type: require("hero")
         },
-
-
         bulletGroup: {
             default: null,
             type: require("bulletGroup")
-        }
+        },
     },
 
     // use this for initialization
@@ -23,6 +24,7 @@ cc.Class({
 
 
         this.eState = D.commonInfo.gameState.start;
+        this.enemyGroup.startAction();
         this.bulletGroup.startAction();
     },
 

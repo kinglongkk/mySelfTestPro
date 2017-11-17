@@ -16,8 +16,8 @@ var common = cc.Class({
     //批量初始化对象池
     batchInitObjPool(thisO, objArray){
         for (var i = 0; i < objArray.length; i++) {
-            var objInfo = objArray[i];
-            this.initObjPool(thisO, objInfo);
+             var objInfo = objArray[i];
+             this.initObjPool(thisO, objInfo);
         }
     },
     //初始化对象池
@@ -27,12 +27,12 @@ var common = cc.Class({
         thisO[poolName] = new cc.NodePool();
         let initPollCount = objInfo.initPollCount;
         for (let ii = 0; ii < initPollCount; ii++) {
-            let nodeO = cc.instantiate(objInfo.prefab);//创建节点
-            thisO[poolName].put(nodeO);//通过putInPool接口放入对象池
+             let nodeO = cc.instantiate(objInfo.prefab);//创建节点
+             thisO[poolName].put(nodeO);//通过putInPool接口放入对象池
         }
     },
     //生成节点
-    genNewNode(pool, prefab, nodeParent){
+    getNewNode(pool, prefab, nodeParent){
         let newNode = null;
         if (pool.size() > 0) {//通过size接口判断对象池中是否有空闲对象
             newNode = pool.get();

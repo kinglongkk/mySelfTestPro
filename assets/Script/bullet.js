@@ -24,7 +24,7 @@ cc.Class({
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
         if (this.bulletGroup.eState != D.commonInfo.gameState.start) return;
-        this.node.x += dt*this.xSpeed;
+        // this.node.x += dt*this.xSpeed;
         this.node.y += dt*this.ySpeed;
         if (this.node.y > this.node.parent.height) this.bulletGroup.bulletDied(this.node);
     },

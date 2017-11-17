@@ -59,6 +59,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        cc.log("bulletGroup is onLoad");
         this.eState = D.commonInfo.gameState.none;
         //初始化无限子弹组
         D.common.initObjPool(this, this.bulletInfinite);
@@ -68,8 +69,8 @@ cc.Class({
     startAction(){
         this.eState = D.commonInfo.gameState.start;
         //生成子弹
-        this.getNewbullet(this.bulletInfinite);
-        this.bICallback = function () {this.getNewbullet(this.bulletInfinite);}.bind(this)
+        this._getNewBullet(this.bulletInfinite);
+        this.bICallback = function () {this._getNewBullet(this.bulletInfinite);}.bind(this);
         this.schedule(this.bICallback, this.bulletInfinite.freqTime);
     },
     pauseAction(){
@@ -93,10 +94,10 @@ cc.Class({
         }
     },
     //生成子弹
-    getNewbullet(bulletInfo){
+    _getNewBullet(bulletInfo){
         var poolName = bulletInfo.name + "pool";
         for (var bc = 0; bc < bulletInfo.position.length; bc ++) {
-            var newNode = D.common.genNewNode(this[poolName], bulletInfo.prefab, this.node);
+            var newNode = D.common.getNewNode(this[poolName], bulletInfo.prefab, this.node);
             var newV2 = this.getBulletPosition(bulletInfo.position[bc]);
             newNode.setPosition(newV2);
             newNode.getComponent("bullet").bulletGroup = this;
