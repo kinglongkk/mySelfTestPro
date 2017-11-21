@@ -22,7 +22,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        this.eState = D.commonInfo.gameState.node;
+        this.eState = D.commonInfo.gameState.none;
         //初始化敌机组
         D.common.batchInitObjPool(this, this.enemyG);
         cc.log("enemyGroup is onLoad", this.enemyG);
